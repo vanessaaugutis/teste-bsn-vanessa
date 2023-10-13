@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pokemons',
@@ -16,7 +17,7 @@ export class PokemonsPage {
     }
   ];
 
-  constructor(public httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient, private router: Router) {
     this.getPokemonsData();
   }
 
@@ -36,6 +37,11 @@ export class PokemonsPage {
     return this.httpClient.get('https://pokeapi.co/api/v2/pokemon?limit=10&offset=0');
   }
 
-
-
+  openDetalhes(url: string) {
+    const id = url.charAt(url.length - 2);
+    this.router.navigate(
+      ['pokemon'],
+      { queryParams: { id: id } }
+    );
+  }
 }

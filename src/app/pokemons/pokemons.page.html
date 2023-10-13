@@ -12,7 +12,7 @@
     <ion-card *ngFor="let pokemon of pokemonsArray">
       <p>{{ pokemon.name }} </p>
       <img [src]="pokemon.urlFoto" />
-      <ion-button>Ver detalhes</ion-button>
+      <ion-button (click)="openDetalhes(pokemon.url)">Ver detalhes</ion-button>
     </ion-card>
   </div>
 </ion-content>

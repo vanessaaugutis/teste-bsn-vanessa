@@ -1,0 +1,35 @@
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+
+  ion-card {
+    height: 200px;
+    width: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    p {
+      font-size: 20px;
+      color: #000;
+      text-align: center;
+    }
+
+    img {
+      width: 80px;
+      height: 80px;
+    }
+
+    ion-button {
+      --background: #1B1E1D;
+      --background-hover: #1B1E1D;
+      --background-activated: #1B1E1D;
+      --background-focused: #1B1E1D;
+      --color: #FFF;
+      --border-radius: 8px;
+      --padding-top: 10px;
+      --padding-bottom: 10px;
+    }
+  }
+}

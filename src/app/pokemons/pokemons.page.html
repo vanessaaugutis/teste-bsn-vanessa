@@ -1,0 +1,18 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Pokemons
+      <ion-icon name="logo-octocat"></ion-icon>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="cards" *ngIf="pokemonsArray.length > 1">
+    <ion-card *ngFor="let pokemon of pokemonsArray">
+      <p>{{ pokemon.name }} </p>
+      <img [src]="pokemon.urlFoto" />
+      <ion-button>Ver detalhes</ion-button>
+    </ion-card>
+  </div>
+</ion-content>

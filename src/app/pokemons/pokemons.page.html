@@ -15,4 +15,13 @@
       <ion-button (click)="openDetalhes(pokemon.url)">Ver detalhes</ion-button>
     </ion-card>
   </div>
+  <div class="paginacao">
+    <ion-button (click)="changePagination(0)">
+      <ion-icon name="chevron-back-outline"></ion-icon>
+    </ion-button>
+
+    <ion-button (click)="changePagination(1)">
+      <ion-icon name="chevron-forward-outline"></ion-icon>
+    </ion-button>
+  </div>
 </ion-content>

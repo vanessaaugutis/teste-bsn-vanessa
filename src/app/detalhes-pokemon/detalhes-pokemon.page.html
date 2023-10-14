@@ -1,7 +1,19 @@
-<ion-header >
-  Pokemon
+<ion-header>
+  <ion-icon (click)="returnPokemons()" name="arrow-back-circle-outline"></ion-icon>
+  <span>{{informacoes.name}}</span>
 </ion-header>
 
 <ion-content>
-  <p>TESTE</p>
+  <div class="container">
+    <img class="image-pokemon" [src]="informacoes.urlFoto" />
+    <div class="caracteristicas">
+      <h4>Características</h4>
+      <p>
+        Peso: <span>{{informacoes.peso}}g</span>
+      </p>
+      <p>
+        Altura: <span>{{informacoes.altura}}cm</span>
+      </p>
+    </div>
+  </div>
 </ion-content>

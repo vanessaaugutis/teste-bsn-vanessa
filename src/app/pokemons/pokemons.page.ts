@@ -63,4 +63,10 @@ export class PokemonsPage {
 
     this.getPokemonsData();
   }
+
+  addOrRemoveFavoritos(nome: string) {
+    console.log(nome);
+    //const estaFavorito = favoritos.filter((fav: string) => fav === nome);
+    // if (estaFavorito)
+  }
 }

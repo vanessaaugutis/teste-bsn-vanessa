@@ -12,7 +12,10 @@
     <ion-card *ngFor="let pokemon of pokemonsArray">
       <p>{{ pokemon.name }} </p>
       <img [src]="pokemon.urlFoto" />
-      <ion-button (click)="openDetalhes(pokemon.url)">Ver detalhes</ion-button>
+      <div class="detalhes-favorito">
+        <ion-button (click)="openDetalhes(pokemon.url)">Ver detalhes</ion-button>
+        <ion-icon (click)="addOrRemoveFavoritos(pokemon.name)" class="icon-heart" name="heart-outline"></ion-icon>
+      </div>
     </ion-card>
   </div>
   <div class="paginacao">

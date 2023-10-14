@@ -21,22 +21,15 @@
       height: 80px;
     }
 
-    .detalhes-favorito {
-      display: flex;
-      align-items: center;
-      ion-button {
-        --background: #1B1E1D;
-        --background-hover: #1B1E1D;
-        --background-activated: #1B1E1D;
-        --background-focused: #1B1E1D;
-        --color: #FFF;
-        --border-radius: 8px;
-      }
-
-      .icon-heart {
-        width: 30px;
-        height: 30px;
-      }
+    ion-button {
+      --background: #1B1E1D;
+      --background-hover: #1B1E1D;
+      --background-activated: #1B1E1D;
+      --background-focused: #1B1E1D;
+      --color: #FFF;
+      --border-radius: 8px;
+      --padding-top: 10px;
+      --padding-bottom: 10px;
     }
   }
 }

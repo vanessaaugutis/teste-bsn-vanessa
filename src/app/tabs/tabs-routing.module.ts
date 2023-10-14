@@ -15,6 +15,10 @@ const routes: Routes = [
         path: '',
         redirectTo: '/tabs/pokemons',
         pathMatch: 'full'
+      },
+      {
+        path: 'favoritos',
+        loadChildren: () => import('../favoritos/favoritos.module').then(m => m.FavoritosPageModule)
       }
     ]
   },

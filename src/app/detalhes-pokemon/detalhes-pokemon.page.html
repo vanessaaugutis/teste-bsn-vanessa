@@ -14,6 +14,26 @@
       <p>
         Altura: <span>{{informacoes.altura}}cm</span>
       </p>
+      <p>
+        Total de movimentos: <span>{{informacoes.movimentos}}</span>
+      </p>
+      <p>
+        Espécie: <span>{{informacoes.especie}}</span>
+      </p>
+    </div>
+
+    <div class="habilidades">
+      <h4>Habilidades</h4>
+      <div *ngFor="let habilidade of this.informacoes.habilidades">
+        <p>{{habilidade.ability.name}}</p>
+      </div>
+    </div>
+
+    <div class="tipos">
+      <h4>Tipos</h4>
+      <div *ngFor="let tipo of this.informacoes.tipos">
+        <p>{{tipo.type.name}}</p>
+      </div>
     </div>
   </div>
 </ion-content>

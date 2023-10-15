@@ -14,6 +14,18 @@ export class DetalhesPokemonPage {
     urlFoto: '',
     peso: 0,
     altura: 0,
+    movimentos: 0,
+    especie: '',
+    habilidades: [{
+      ability: {
+        name: ''
+      }
+    }],
+    tipos: [{
+      type: {
+        name: ''
+      }
+    }]
   };
 
   constructor(private httpClient: HttpClient, private router: ActivatedRoute, private route: Router) {
@@ -27,10 +39,15 @@ export class DetalhesPokemonPage {
   getPokemonData(id: string) {
     this.getPokemon(id)
       .subscribe((response) => {
+        console.log(response)
         this.informacoes.name = response.name;
         this.informacoes.urlFoto = `https://unpkg.com/pokeapi-sprites@2.0.2/sprites/pokemon/other/dream-world/${id}.svg`;
         this.informacoes.altura = response.height;
         this.informacoes.peso = response.weight;
+        this.informacoes.movimentos = response.moves.length;
+        this.informacoes.especie = response.species.name;
+        this.informacoes.habilidades = response.abilities;
+        this.informacoes.tipos = response.types;
       });
 
   }

@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 export class PokemonsPage {
   public pokemonsArray = [
     {
+      id: 0,
       name: '',
       url: '',
       urlFoto: '',
@@ -38,9 +39,10 @@ export class PokemonsPage {
         this.pokemonsArray.forEach((pokemon) => {
           this.contagemPokemon+= 1;
           let number = '';
-          number = this.contagemPokemon < 9 ? pokemon.url.charAt(pokemon.url.length - 2) : pokemon.url.charAt(pokemon.url.length - 3) + pokemon.url.charAt(pokemon.url.length - 2);
+          number = this.contagemPokemon <= 9 ? pokemon.url.charAt(pokemon.url.length - 2) : pokemon.url.charAt(pokemon.url.length - 3) + pokemon.url.charAt(pokemon.url.length - 2);
           pokemon.urlFoto = `https://unpkg.com/pokeapi-sprites@2.0.2/sprites/pokemon/other/dream-world/${number}.svg`
           pokemon.favorito = this.favoritos && this.favoritos.includes("#" + pokemon.name) ? true : false;
+          pokemon.id = this.contagemPokemon;
         })
       });
 
@@ -50,8 +52,8 @@ export class PokemonsPage {
     return this.httpClient.get(`https://pokeapi.co/api/v2/pokemon?limit=10&offset=${this.pagination}`);
   }
 
-  openDetalhes(url: string) {
-    const id = this.contagemPokemon < 9 ? url.charAt(url.length - 2) : url.charAt(url.length - 3) + url.charAt(url.length - 2);
+  openDetalhes(contador: number) {
+    const id = contador + '';
     this.router.navigate(
       ['pokemon'],
       { queryParams: { id: id } }

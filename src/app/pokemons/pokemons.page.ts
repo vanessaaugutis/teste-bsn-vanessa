@@ -1,3 +1,4 @@
+import { AppStorageService } from './../services/app-storage.service';
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -20,7 +21,9 @@ export class PokemonsPage {
   public contagemPokemon = 0;
   public pagination = 0;
 
-  constructor(private httpClient: HttpClient, private router: Router) {
+  value:any = '';
+
+  constructor(private httpClient: HttpClient, private router: Router, private appStorageService: AppStorageService) {
     this.getPokemonsData();
   }
 
@@ -64,9 +67,16 @@ export class PokemonsPage {
     this.getPokemonsData();
   }
 
-  addOrRemoveFavoritos(nome: string) {
-    console.log(nome);
-    //const estaFavorito = favoritos.filter((fav: string) => fav === nome);
-    // if (estaFavorito)
+  async addOrRemoveFavoritos(nome: string) {
+    const favoritos = await this.appStorageService.get('favoritos');
+    const estaFavorito = favoritos ? favoritos.includes(nome) : null;
+    let favoritosAtualizado = '';
+    if (estaFavorito) {
+      favoritosAtualizado = 'atualizado';
+    } else {
+      favoritosAtualizado = nome;
+    }
+
+    await this.appStorageService.set('favoritos', favoritosAtualizado)
   }
 }

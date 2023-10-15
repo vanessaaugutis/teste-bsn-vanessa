@@ -14,7 +14,8 @@ export class PokemonsPage {
     {
       name: '',
       url: '',
-      urlFoto: ''
+      urlFoto: '',
+      favorito: false
     }
   ];
 
@@ -23,19 +24,23 @@ export class PokemonsPage {
 
   value:any = '';
 
+  public favoritos = '';
+
   constructor(private httpClient: HttpClient, private router: Router, private appStorageService: AppStorageService) {
     this.getPokemonsData();
   }
 
   getPokemonsData() {
     this.getPokemons()
-      .subscribe((response) => {
+      .subscribe(async (response) => {
         this.pokemonsArray = response.results;
+        this.favoritos = await this.appStorageService.get('favoritos');
         this.pokemonsArray.forEach((pokemon) => {
           this.contagemPokemon+= 1;
           let number = '';
           number = this.contagemPokemon < 9 ? pokemon.url.charAt(pokemon.url.length - 2) : pokemon.url.charAt(pokemon.url.length - 3) + pokemon.url.charAt(pokemon.url.length - 2);
           pokemon.urlFoto = `https://unpkg.com/pokeapi-sprites@2.0.2/sprites/pokemon/other/dream-world/${number}.svg`
+          pokemon.favorito = this.favoritos && this.favoritos.includes("#" + pokemon.name) ? true : false;
         })
       });
 
@@ -69,14 +74,22 @@ export class PokemonsPage {
 
   async addOrRemoveFavoritos(nome: string) {
     const favoritos = await this.appStorageService.get('favoritos');
-    const estaFavorito = favoritos ? favoritos.includes(nome) : null;
+    const estaFavorito = favoritos ? favoritos.includes("#" + nome) : null;
     let favoritosAtualizado = '';
-    if (estaFavorito) {
-      favoritosAtualizado = 'atualizado';
-    } else {
-      favoritosAtualizado = nome;
-    }
+
+    if (favoritos) {
+      if (estaFavorito) {
+        favoritosAtualizado = favoritos.replace("#" + nome, '');
+      } else {
+        favoritosAtualizado = favoritos + "#" + nome;
+      }
+    } else { favoritosAtualizado = "#" + nome };
 
     await this.appStorageService.set('favoritos', favoritosAtualizado)
+    this.getPokemonsData();
+  }
+
+  async getFavoritos() {
+    this.favoritos = await this.appStorageService.get('favoritos');
   }
 }

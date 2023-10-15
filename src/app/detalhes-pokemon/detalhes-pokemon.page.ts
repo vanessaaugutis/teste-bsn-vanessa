@@ -39,7 +39,6 @@ export class DetalhesPokemonPage {
   getPokemonData(id: string) {
     this.getPokemon(id)
       .subscribe((response) => {
-        console.log(response)
         this.informacoes.name = response.name;
         this.informacoes.urlFoto = `https://unpkg.com/pokeapi-sprites@2.0.2/sprites/pokemon/other/dream-world/${id}.svg`;
         this.informacoes.altura = response.height;

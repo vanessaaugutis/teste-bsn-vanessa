@@ -43,13 +43,14 @@ export class FavoritosPage {
     this.favoritosGet()
       .subscribe(async (response) => {
         this.pokemonsArray = response.results;
+        this.favoritosArray = [];
         this.favoritos = await this.appStorageService.get('favoritos');
         this.pokemonsArray.forEach((pokemon) => {
           pokemon.favorito = this.favoritos && this.favoritos.includes("#" + pokemon.name) ? true : false;
           if (pokemon.favorito) {
             this.contagemPokemon+= 1;
             let number = '';
-            number = this.contagemPokemon < 9 ? pokemon.url.charAt(pokemon.url.length - 2) : pokemon.url.charAt(pokemon.url.length - 3) + pokemon.url.charAt(pokemon.url.length - 2);
+            number = this.contagemPokemon <= 9 ? pokemon.url.charAt(pokemon.url.length - 2) : pokemon.url.charAt(pokemon.url.length - 3) + pokemon.url.charAt(pokemon.url.length - 2);
             pokemon.urlFoto = `https://unpkg.com/pokeapi-sprites@2.0.2/sprites/pokemon/other/dream-world/${number}.svg`
             this.favoritosArray.push(pokemon);
           }
@@ -96,7 +97,7 @@ export class FavoritosPage {
       }
     } else { favoritosAtualizado = "#" + nome };
 
-    await this.appStorageService.set('favoritos', favoritosAtualizado)
+    await this.appStorageService.set('favoritos', favoritosAtualizado);
     this.favoritosData();
   }
 

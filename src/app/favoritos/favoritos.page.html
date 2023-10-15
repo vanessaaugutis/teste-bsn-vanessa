@@ -8,9 +8,9 @@
 </ion-header>
 
 <ion-content>
-  <div class="cards" *ngIf="favoritosArray.length > 1">
+  <div class="cards" *ngIf="favoritosArray.length > 0">
     <ion-card *ngFor="let pokemon of favoritosArray">
-      <div>
+      <div class="infos-pokemon">
         <p>{{ pokemon.name }} </p>
         <img [src]="pokemon.urlFoto" />
       </div>
